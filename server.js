@@ -23,7 +23,7 @@ var google = require('googleapis');
 var OAuth2 = google.Auth.OAuth2Client;
 var ClientId = '866249875368-k04p5k0uk52k4j93lgvebgfttvfoujlk.apps.googleusercontent.com';
 var ClientSecret = '_h-wtubugxB1UDNNEDj_By84';
-var RedirectionUrl = 'http://127.0.0.1:3000/reqtask'
+var RedirectionUrl = 'https://icrowdtaskhao.herokuapp.com/reqtask'
 
 const app = express()
 //Create application/x-www-form-urlencoded parser
