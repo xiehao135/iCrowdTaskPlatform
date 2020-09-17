@@ -82,7 +82,7 @@ mongoose.set('useCreateIndex', true)
 
 //Post method for request signin
 app.post('/process_signin_post',function(req,res){
-    mongoose.connect('mongodb://127.0.0.1:27017/iCrowdTaskDB',{useNewUrlParser: true, useUnifiedTopology: true});
+    mongoose.connect('mongodb+srv://xxxhao:1qaz2wsx@icrowdcluster.kwupa.mongodb.net/iCrowdTaskDB?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true});
     
     const requester = Requester;
 
@@ -236,7 +236,7 @@ app.post('/process_change_password',function(req,res){
             res.send('The verification code has been sent to your email, turn back and input it in verification code area!')
         }
     }else if(req.body.Button == 'reset'){
-        mongoose.connect('mongodb://127.0.0.1:27017/iCrowdTaskDB',{useNewUrlParser: true, useUnifiedTopology: true});
+        mongoose.connect('mongodb+srv://xxxhao:1qaz2wsx@icrowdcluster.kwupa.mongodb.net/iCrowdTaskDB?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true});
 
         const requester = Requester;
 
@@ -281,14 +281,14 @@ app.post('/process_change_password',function(req,res){
 //Crowd REST APIs
 app.route('/workers')
 .get( (req, res)=>{
-    mongoose.connect('mongodb://127.0.0.1:27017/CrowdWorkerDB',{useNewUrlParser: true,useUnifiedTopology: true})
+    mongoose.connect('mongodb+srv://xxxhao:1qaz2wsx@icrowdcluster.kwupa.mongodb.net/CrowdWorkerDB?retryWrites=true&w=majority',{useNewUrlParser: true,useUnifiedTopology: true})
     Worker.find((err, workerList)=>{
         if (err) {res.send(err)}
         else {res.send(workerList)}
     })
 })
 .post( (req,res)=>{
-    mongoose.connect('mongodb://127.0.0.1:27017/CrowdWorkerDB',{useNewUrlParser: true,useUnifiedTopology: true})
+    mongoose.connect('mongodb+srv://xxxhao:1qaz2wsx@icrowdcluster.kwupa.mongodb.net/CrowdWorkerDB?retryWrites=true&w=majority',{useNewUrlParser: true,useUnifiedTopology: true})
     const document = new Worker({
         worker_name: req.body.name,
         worker_password: req.body.password,
@@ -302,7 +302,7 @@ app.route('/workers')
     )
 })
 .delete( (req,res) =>{
-    mongoose.connect('mongodb://127.0.0.1:27017/CrowdWorkerDB',{useNewUrlParser: true,useUnifiedTopology: true})
+    mongoose.connect('mongodb+srv://xxxhao:1qaz2wsx@icrowdcluster.kwupa.mongodb.net/CrowdWorkerDB?retryWrites=true&w=majority',{useNewUrlParser: true,useUnifiedTopology: true})
     Worker.deleteMany((err) =>{
         if (err) {res.send(err)}
         else {res.send('Successfully deleted all workers!')}
@@ -311,14 +311,14 @@ app.route('/workers')
 
 app.route('/workers/:id')
 .get((req, res)=>{
-    mongoose.connect('mongodb://127.0.0.1:27017/CrowdWorkerDB',{useNewUrlParser: true,useUnifiedTopology: true})
+    mongoose.connect('mongodb+srv://xxxhao:1qaz2wsx@icrowdcluster.kwupa.mongodb.net/CrowdWorkerDB?retryWrites=true&w=majority',{useNewUrlParser: true,useUnifiedTopology: true})
     Worker.findOne({worker_id: req.params.id}, (err, foundWorker)=>{
         if (foundWorker) (res.send(foundWorker))
         else res.send("No Matched Task Found!")
     })
 })
 .put((req,res)=>{
-    mongoose.connect('mongodb://127.0.0.1:27017/CrowdWorkerDB',{useNewUrlParser: true,useUnifiedTopology: true})
+    mongoose.connect('mongodb+srv://xxxhao:1qaz2wsx@icrowdcluster.kwupa.mongodb.net/CrowdWorkerDB?retryWrites=true&w=majority',{useNewUrlParser: true,useUnifiedTopology: true})
     Worker.update(
         {worker_id: req.params.id},
         {
@@ -336,7 +336,7 @@ app.route('/workers/:id')
     )
 })
 .patch((req, res)=>{
-    mongoose.connect('mongodb://127.0.0.1:27017/CrowdWorkerDB',{useNewUrlParser: true,useUnifiedTopology: true})
+    mongoose.connect('mongodb+srv://xxxhao:1qaz2wsx@icrowdcluster.kwupa.mongodb.net/CrowdWorkerDB?retryWrites=true&w=majority',{useNewUrlParser: true,useUnifiedTopology: true})
     Worker.update(
         {worker_id: req.params.id},
         {$set: req.body},
