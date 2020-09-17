@@ -112,7 +112,7 @@ app.post('/process_signin_post',function(req,res){
 
 //Post method for request signup
 app.post('/process_signup_post',function(req,res){
-    mongoose.connect('mongodb+srv://dbUser:dbUserPassword@cluster0.kwupa.mongodb.net/requesters?retryWrites=true&w=majority')
+    mongoose.connect('mongodb+srv://xxxhao:1qaz2wsx@icrowdcluster.kwupa.mongodb.net/iCrowdTaskDB?retryWrites=true&w=majority')
     
     const requester = Requester;
 
