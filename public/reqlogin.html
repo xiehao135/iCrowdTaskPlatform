@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>iCrowdTask SignIn</title>
+
+<!--Bootstrap CSS-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<script type='text/javascript'>
+	var emailValue = ''
+	var passwordValue = ''
+	function getCookie(){
+		var flag = 0
+		var position1,position2,position3
+		if(document.cookie.indexOf('emailcookie') != -1 && document.cookie.indexOf('passwordcookie') != -1){
+			for(var i = 0; i < document.cookie.length; i++){
+				if(flag == 0 && document.cookie.substr(i,1) == '='){
+					position1 = i
+					flag ++
+				}
+				if(flag == 1 && document.cookie.substr(i,1) == ';'){
+					position2 = i
+					flag ++
+				}
+				if(flag == 2 && document.cookie.substr(i,1) == '='){
+					position3 = i
+					break
+				}
+			}
+			var emailCookie = document.cookie
+			emailValue = emailCookie.substring(position1+1,position2)
+			var signalPosition = emailValue.indexOf('%')
+			emailValue = emailValue.substring(0,signalPosition) + "@" + emailValue.substring(signalPosition+3)
+			passwordValue = emailCookie.substring(position3+1)
+			if(emailValue){
+				document.signinform.checkEmail.value = emailValue
+			}
+			if(passwordValue){
+				document.signinform.checkPassword.value = passwordValue
+			}
+		}
+	}
+</script>
+
+</head>
+<body onload="getCookie()">
+
+	
+<div>
+	<div class="row">
+    <aside class="col-sm-4" style="margin:10px auto 0 auto;">
+      <h4 class="card-title mb-4 mt-1">iCrowdTask Login</h4>
+	<div class="card">
+		<article class="card-body">
+			<a href="/reqsignup" class="float-right btn btn-outline-primary">Sign up</a>
+			<h4 class="card-title mb-4 mt-1">Sign in</h4>
+			<form action="http://127.0.0.1:3000/process_signin_post" method="POST" name="signinform">
+				<div class="form-group">
+					<label>Your email</label>
+					<input name="checkEmail" class="form-control" placeholder="Email" type="text">
+				</div> <!-- form-group// -->
+				<div class="form-group">
+					<a class="float-right" href="./forgetPassword.html">Forgot?</a>
+					<label>Your password</label>
+					<input name="checkPassword" class="form-control" placeholder="******" type="password">
+				</div> <!-- form-group// --> 
+				<div class="form-group"> 
+					<div class="checkbox">
+						<input type="checkbox" name="rememberMe"> 
+						<label>Save password </label>
+					</div> <!-- checkbox .// -->
+				</div> <!-- form-group// -->  
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-block"> Login  </button>
+				</div> <!-- form-group// -->                                                           
+			</form>
+
+			<form action="http://127.0.0.1:3000/process_signin_with_google" method="GET">
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-block">
+						<img src='./image/icon.jpg' style="width:28px;float:left;">
+						<text style="float: left;margin-left: 27%;">Sign in with Google</text>
+					</button>
+				</div>
+			</form>
+		</article>
+	</div>
+	</aside>
+	</div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+</div> <!-- card.// -->
+</body>
+</html>
